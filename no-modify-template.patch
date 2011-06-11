@@ -1,0 +1,33 @@
+with Perl 5.12.3 we changed $self->{"nametemplate_pem"} via $file modification
+
+with such config:
+nametemplate_pem = @ALIAS@.r@R@.pem
+infodir = /etc/pki/esteid
+cadir = /etc/pki/esteid
+output = /etc/pki/esteid/crl
+formats = openssl, pem
+
+it tried to:
+VERBOSE(3) Writing PEM file /etc/pki/esteid/crl//etc/pki/esteid/crl/ESTEID-SK_2007.r0.pem
+should had been:
+VERBOSE(3) Writing PEM file /etc/pki/esteid/crl/ESTEID-SK_2007.r0.pem
+
+--- fetch-crl-3.0.6/fetch-crl	2011-03-20 05:01:20.000000000 +0200
++++ fetch-crl-3.0.6/fetch-crl	2011-06-11 11:30:58.731040625 +0300
+@@ -1873,13 +1879,14 @@
+            $::cnf->{_}->{"output_der"}, $::cnf->{_}->{"output_pem"},
+            $::cnf->{_}->{"output_nss"}, $::cnf->{_}->{"output_openssl"}) ) {
+         defined $output and $output or next;
+-        foreach my $file (
++        foreach my $ref (
+               $self->{"nametemplate_der"},
+               $self->{"nametemplate_pem"},
+               $self->{"alias"}.".r\@R\@",
+               $self->{"anchorname"}.".r\@R\@",
+             ) {
+-          next unless $file;
++          next unless $ref;
++          my $file = $ref; # copy, not to change original
+           $file =~ s/\@R\@/$i/g;
+           $file = join "/", $output, $file;
+           next if ! -e $file;

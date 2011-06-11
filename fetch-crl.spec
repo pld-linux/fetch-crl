@@ -10,6 +10,7 @@ Group:		Applications/System
 URL:		http://www.nikhef.nl/grid/gridwiki/index.php/FetchCRL3
 Source0:	https://dist.eugridpma.info/distribution/util/fetch-crl3/%{name}-%{version}.tar.gz
 # Source0-md5:	b58f10fb76bab3a34fd4d80541956ef3
+Patch0:		no-modify-template.patch
 BuildRequires:	rpm-perlprov >= 4.1-13
 Requires:	openssl
 Obsoletes:	fetch-crl3
@@ -40,6 +41,8 @@ files follow the hash.crl_url convention.
 
 %prep
 %setup -q
+%patch0 -p1
+
 # use this to figure out deps
 #sed -i -e 's,,BLAAA,' %{name}
 
