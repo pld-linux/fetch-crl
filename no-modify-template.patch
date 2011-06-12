@@ -12,6 +12,14 @@ VERBOSE(3) Writing PEM file /etc/pki/esteid/crl//etc/pki/esteid/crl/ESTEID-SK_20
 should had been:
 VERBOSE(3) Writing PEM file /etc/pki/esteid/crl/ESTEID-SK_2007.r0.pem
 
+16:21:09  SamChi> glen: foreach does not copy the value, it assigns each value of the list to the variable
+16:21:31  SamChi> glen: unless it is not a valid lvalue, then it may have to be copied
+16:22:12  SamChi> $ perl -le '@a = qw(a b); foreach (@a) { $_ .= "foobar" }; print "@a"'
+16:22:12  SamChi> afoobar bfoobar
+16:22:55  SamChi> glen: oh, I was wrong about the second part
+16:23:03  SamChi> $ perl -le '@a = qw(a b); foreach my $v (@a, "c") { $v .= "foobar" }; print "@a"'
+16:23:03  SamChi> Modification of a read-only value attempted at -e line 1.
+
 --- fetch-crl-3.0.6/fetch-crl	2011-03-20 05:01:20.000000000 +0200
 +++ fetch-crl-3.0.6/fetch-crl	2011-06-11 11:30:58.731040625 +0300
 @@ -1873,13 +1879,14 @@
