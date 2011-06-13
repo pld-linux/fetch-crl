@@ -3,14 +3,13 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Downloads Certificate Revocation Lists
 Name:		fetch-crl
-Version:	3.0.6
+Version:	3.0.7
 Release:	1
 License:	ASL 2.0
 Group:		Applications/System
 URL:		http://www.nikhef.nl/grid/gridwiki/index.php/FetchCRL3
-Source0:	https://dist.eugridpma.info/distribution/util/fetch-crl3/%{name}-%{version}.tar.gz
-# Source0-md5:	b58f10fb76bab3a34fd4d80541956ef3
-Patch0:		no-modify-template.patch
+Source0:	http://dist.eugridpma.info/distribution/util/fetch-crl3/%{name}-%{version}.tar.gz
+# Source0-md5:	d15773dd28110214f7d5302f073e97c1
 BuildRequires:	rpm-perlprov >= 4.1-13
 Requires:	openssl
 Obsoletes:	fetch-crl3
@@ -25,12 +24,6 @@ files follow the hash.crl_url convention.
 
 %prep
 %setup -q
-%patch0 -p1
-
-# NOTE: this is literal ctrl+a here
-# see https://bugzilla.redhat.com/show_bug.cgi?id=699548
-# (file(1) considers file 'data' as it sees ^A inside script)
-sed -i -e 's,,\\001,' %{name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
