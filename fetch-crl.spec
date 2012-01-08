@@ -11,7 +11,10 @@ URL:		http://www.nikhef.nl/grid/gridwiki/index.php/FetchCRL3
 Source0:	http://dist.eugridpma.info/distribution/util/fetch-crl3/%{name}-%{version}.tar.gz
 # Source0-md5:	0c255931d05d46ed444d76438df29dd5
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.228
+Requires(post,preun):	/sbin/chkconfig
 Requires:	openssl
+Requires:	rc-scripts
 Obsoletes:	fetch-crl3
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
