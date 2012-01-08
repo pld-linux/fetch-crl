@@ -1,0 +1,5 @@
+# Cron job running by default every 6 hours, at 45 minutes +/- 3 minutes
+MAILTO=root
+
+42 */6 * * *	root /usr/sbin/fetch-crl -q -r 360
+
