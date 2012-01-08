@@ -3,13 +3,13 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Downloads Certificate Revocation Lists
 Name:		fetch-crl
-Version:	3.0.7
+Version:	3.0.8
 Release:	1
 License:	ASL 2.0
 Group:		Applications/System
 URL:		http://www.nikhef.nl/grid/gridwiki/index.php/FetchCRL3
 Source0:	http://dist.eugridpma.info/distribution/util/fetch-crl3/%{name}-%{version}.tar.gz
-# Source0-md5:	d15773dd28110214f7d5302f073e97c1
+# Source0-md5:	0c255931d05d46ed444d76438df29dd5
 BuildRequires:	rpm-perlprov >= 4.1-13
 Requires:	openssl
 Obsoletes:	fetch-crl3
