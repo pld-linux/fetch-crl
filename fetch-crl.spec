@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.perl
 Summary:	Downloads Certificate Revocation Lists
 Name:		fetch-crl
 Version:	3.0.8
