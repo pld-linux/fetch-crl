@@ -1,7 +1,7 @@
 Summary:	Downloads Certificate Revocation Lists
 Name:		fetch-crl
 Version:	3.0.8
-Release:	1
+Release:	2
 License:	ASL 2.0
 Group:		Applications/System
 URL:		http://www.nikhef.nl/grid/gridwiki/index.php/FetchCRL3
